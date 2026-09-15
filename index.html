@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rewards Center</title>
+    <title>Centro de Recompensas</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
@@ -30,12 +30,12 @@
         }
     </script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
         
         body {
             background: linear-gradient(135deg, #fbbf24 0%, #fef3c7 40%, #ffffff 100%);
             min-height: 100vh;
-            font-family: 'Inter', sans-serif;
+            font-family: 'Space Grotesk', sans-serif;
             color: #1f2937;
         }
         
@@ -120,7 +120,7 @@
                 </div>
             </div>
             <h1 class="text-3xl font-bold text-gray-800">{{ user.name }}</h1>
-            <p class="text-amber-600 font-medium tracking-wide text-sm uppercase mt-1">Rewards Center</p>
+            <p class="text-amber-600 font-medium tracking-wide text-sm uppercase mt-1">Centro de Recompensas</p>
         </header>
 
         <!-- Main Content Area with Transitions -->
@@ -135,8 +135,8 @@
                             <i class="fas fa-medal text-4xl text-amber-500"></i>
                         </div>
                         <h2 class="text-2xl font-bold mb-2">Skill Master</h2>
-                        <p class="text-gray-600 mb-6">Collect your achievements and master new skills to level up your profile.</p>
-                        <button class="btn-primary px-8 py-3 w-full">View Achievements</button>
+                        <p class="text-gray-600 mb-6">Colecciona tus logros y domina nuevas habilidades para subir de nivel tu perfil.</p>
+                        <button class="btn-primary px-8 py-3 w-full">Ver Logros</button>
                     </div>
 
                     <!-- Partners Program Button -->
@@ -144,9 +144,9 @@
                         <div class="w-20 h-20 bg-amber-100 rounded-full flex items-center justify-center mb-6 group-hover:bg-amber-200 transition-colors">
                             <i class="fas fa-users text-4xl text-amber-500"></i>
                         </div>
-                        <h2 class="text-2xl font-bold mb-2">Partners Program</h2>
-                        <p class="text-gray-600 mb-6">Grow your network, refer friends, and earn exclusive rewards.</p>
-                        <button class="btn-primary px-8 py-3 w-full">Partner Dashboard</button>
+                        <h2 class="text-2xl font-bold mb-2">Programa de Socios</h2>
+                        <p class="text-gray-600 mb-6">Haz crecer tu red, refiere amigos y gana recompensas exclusivas.</p>
+                        <button class="btn-primary px-8 py-3 w-full">Panel de Socios</button>
                     </div>
                 </div>
 
@@ -154,19 +154,19 @@
                 <div v-else-if="currentView === 'skills'" key="skills" class="mt-2">
                     <div class="flex items-center justify-between mb-8">
                         <button @click="currentView = 'home'" class="text-gray-500 hover:text-amber-600 transition flex items-center font-medium">
-                            <i class="fas fa-arrow-left mr-2"></i> Back to Home
+                            <i class="fas fa-arrow-left mr-2"></i> Volver al Inicio
                         </button>
                     </div>
 
                     <div class="text-center mb-10">
                         <h2 class="text-4xl font-bold mb-3">Skill Master</h2>
-                        <p class="text-gray-600 text-lg">Collect your achievements and master new skills.</p>
+                        <p class="text-gray-600 text-lg">Colecciona tus logros y domina nuevas habilidades.</p>
                         
                         <!-- Progress Bar -->
                         <div class="max-w-md mx-auto mt-6 bg-white rounded-full h-4 shadow-inner overflow-hidden border border-gray-100">
-                            <div class="bg-gradient-to-r from-amber-400 to-amber-500 h-4 rounded-full transition-all duration-1000" :style="`width: ${(unlockedSkillsCount / 30) * 100}%`"></div>
+                            <div class="bg-gradient-to-r from-amber-400 to-amber-500 h-4 rounded-full transition-all duration-1000" :style="`width: ${(unlockedSkillsCount / 10) * 100}%`"></div>
                         </div>
-                        <p class="text-sm font-medium text-amber-600 mt-2">{{ unlockedSkillsCount }} of 30 Unlocked</p>
+                        <p class="text-sm font-medium text-amber-600 mt-2">{{ unlockedSkillsCount }} de 10 Desbloqueados</p>
                     </div>
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
@@ -178,10 +178,10 @@
                             <div class="flex justify-between items-start mb-4">
                                 <i :class="['fas', achievement.icon, 'medal-icon']"></i>
                                 <span v-if="achievement.unlocked" class="bg-amber-100 text-amber-700 text-xs font-bold px-2 py-1 rounded-md">
-                                    Unlocked
+                                    Desbloqueado
                                 </span>
                                 <span v-else class="bg-gray-100 text-gray-500 text-xs font-bold px-2 py-1 rounded-md">
-                                    Locked
+                                    Bloqueado
                                 </span>
                             </div>
                             
@@ -202,14 +202,14 @@
                     <!-- Link Generation / Display -->
                     <div class="glass-card p-8 text-center mb-8">
                         <div v-if="!user.partnerLink">
-                            <h2 class="text-2xl font-bold mb-3">Create your Partner Link</h2>
-                            <p class="text-gray-600 mb-6">Create your personal referral link and start earning rewards.</p>
+                            <h2 class="text-2xl font-bold mb-3">Crea tu Enlace de Socio</h2>
+                            <p class="text-gray-600 mb-6">Crea tu enlace de referencia personal y comienza a ganar recompensas.</p>
                             <button @click="generateLink" class="btn-primary px-8 py-3 inline-flex items-center">
-                                <i class="fas fa-link mr-2"></i> Create Link
+                                <i class="fas fa-link mr-2"></i> Crear Enlace
                             </button>
                         </div>
                         <div v-else>
-                            <h2 class="text-xl font-bold text-gray-500 uppercase tracking-wider text-sm mb-4">Your Partner Link</h2>
+                            <h2 class="text-xl font-bold text-gray-500 uppercase tracking-wider text-sm mb-4">Tu Enlace de Socio</h2>
                             <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
                                 <div class="bg-white border-2 border-amber-100 rounded-xl px-6 py-4 font-mono text-lg text-gray-800 shadow-sm w-full sm:w-auto">
                                     {{ user.partnerLink }}
@@ -217,7 +217,7 @@
                                 <div class="flex gap-2 w-full sm:w-auto">
                                     <button @click="copyLink" class="btn-primary px-6 py-4 flex-1 sm:flex-none flex justify-center items-center">
                                         <i class="fas" :class="linkCopied ? 'fa-check' : 'fa-copy'"></i>
-                                        <span class="ml-2">{{ linkCopied ? 'Copied!' : 'Copy Link' }}</span>
+                                        <span class="ml-2">{{ linkCopied ? '�Copiado!' : 'Copiar Enlace' }}</span>
                                     </button>
                                 </div>
                             </div>
@@ -229,25 +229,25 @@
                         <div class="glass-card p-6 flex flex-col items-center justify-center text-center">
                             <div class="text-amber-500 mb-2"><i class="fas fa-user-plus text-3xl"></i></div>
                             <h3 class="text-4xl font-bold text-gray-800">{{ stats.registered }}</h3>
-                            <p class="text-sm font-medium text-gray-500 uppercase tracking-wide mt-1">People Registered</p>
+                            <p class="text-sm font-medium text-gray-500 uppercase tracking-wide mt-1">Personas Registradas</p>
                         </div>
                         <div class="glass-card p-6 flex flex-col items-center justify-center text-center">
                             <div class="text-amber-500 mb-2"><i class="fas fa-star text-3xl"></i></div>
                             <h3 class="text-4xl font-bold text-gray-800">{{ stats.subscribed }}</h3>
-                            <p class="text-sm font-medium text-gray-500 uppercase tracking-wide mt-1">People Subscribed</p>
+                            <p class="text-sm font-medium text-gray-500 uppercase tracking-wide mt-1">Personas Suscritas</p>
                         </div>
                         <div class="glass-card p-6 flex flex-col items-center justify-center text-center">
                             <div class="text-amber-500 mb-2"><i class="fas fa-gift text-3xl"></i></div>
                             <h3 class="text-4xl font-bold text-gray-800">{{ stats.rewardsEarned }}</h3>
-                            <p class="text-sm font-medium text-gray-500 uppercase tracking-wide mt-1">Rewards Earned</p>
+                            <p class="text-sm font-medium text-gray-500 uppercase tracking-wide mt-1">Recompensas Ganadas</p>
                         </div>
                     </div>
 
                     <!-- Rewards Section -->
                     <div>
                         <div class="text-center mb-8">
-                            <h2 class="text-3xl font-bold mb-2">Your Rewards</h2>
-                            <p class="text-gray-600">Earn rewards by growing your partner network.</p>
+                            <h2 class="text-3xl font-bold mb-2">Tus Recompensas</h2>
+                            <p class="text-gray-600">Gana recompensas haciendo crecer tu red de socios.</p>
                         </div>
 
                         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -263,15 +263,15 @@
                                 <p class="text-2xl font-black text-amber-600 mb-4">${{ reward.value }}</p>
                                 
                                 <div class="mt-auto">
-                                    <button v-if="reward.status === 'Available'" class="btn-primary w-full py-2 text-sm">Claim Reward</button>
+                                    <button v-if="reward.status === 'Available'" class="btn-primary w-full py-2 text-sm">Reclamar Recompensa</button>
                                     <button v-else-if="reward.status === 'Claimed'" class="w-full py-2 text-sm bg-green-100 text-green-700 font-bold rounded-full border border-green-200" disabled>
-                                        <i class="fas fa-check-circle mr-1"></i> Claimed
+                                        <i class="fas fa-check-circle mr-1"></i> Reclamada
                                     </button>
                                     <button v-else class="w-full py-2 text-sm bg-gray-100 text-gray-500 font-bold rounded-full border border-gray-200" disabled>
-                                        <i class="fas fa-lock mr-1"></i> Locked
+                                        <i class="fas fa-lock mr-1"></i> Bloqueado
                                     </button>
                                 </div>
-                                <p v-if="reward.requirement" class="text-xs text-center text-gray-400 mt-3">Requires {{ reward.requirement }} subscribers</p>
+                                <p v-if="reward.requirement" class="text-xs text-center text-gray-400 mt-3">Requiere {{ reward.requirement }} suscriptores</p>
                             </div>
                         </div>
                     </div>
@@ -298,7 +298,7 @@
                     
                     <div class="inline-block px-4 py-2 rounded-full font-bold text-sm"
                          :class="selectedAchievement.unlocked ? 'bg-amber-100 text-amber-700' : 'bg-gray-100 text-gray-500'">
-                        {{ selectedAchievement.unlocked ? 'Unlocked on ' + selectedAchievement.date : 'Locked' }}
+                        {{ selectedAchievement.unlocked ? 'Desbloqueado el ' + selectedAchievement.date : 'Bloqueado' }}
                     </div>
                 </div>
             </div>
@@ -330,13 +330,13 @@
                 // Generate 30 mock achievements
                 const icons = ['fa-trophy', 'fa-medal', 'fa-award', 'fa-crown', 'fa-star', 'fa-fire', 'fa-bolt', 'fa-gem'];
                 const achievements = ref(
-                    Array.from({ length: 30 }, (_, i) => ({
+                    Array.from({ length: 10 }, (_, i) => ({
                         id: i + 1,
                         name: `Logro ${i + 1}`,
                         description: `Descripción detallada para el Logro ${i + 1}. Completa los requisitos para obtener esta medalla.`,
                         icon: icons[i % icons.length],
-                        unlocked: i < 12, // First 12 are unlocked for demo
-                        date: i < 12 ? `2023-10-${(i % 28) + 1}` : null
+                        unlocked: i < 4, // First 12 are unlocked for demo
+                        date: i < 4 ? `2023-10-${(i % 28) + 1}` : null
                     }))
                 );
 
