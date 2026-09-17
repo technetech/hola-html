@@ -195,7 +195,10 @@
                 <div v-else-if="currentView === 'partners'" key="partners" class="mt-2">
                     <div class="flex items-center justify-between mb-8">
                         <button @click="currentView = 'home'" class="text-gray-500 hover:text-amber-600 transition flex items-center font-medium">
-                            <i class="fas fa-arrow-left mr-2"></i> Back to Home
+                            <i class="fas fa-arrow-left mr-2"></i> Volver al Inicio
+                        </button>
+                        <button @click="currentView = 'rules'" class="text-amber-600 hover:text-amber-700 transition flex items-center font-medium">
+                            <i class="fas fa-book mr-2"></i> Ver Reglas
                         </button>
                     </div>
 
@@ -276,7 +279,202 @@
                         </div>
                     </div>
                 </div>
+
+                <!-- RULES -->
+                <div v-else-if="currentView === 'rules'" key="rules" class="mt-2">
+                    <div class="flex items-center justify-between mb-8">
+                        <button @click="currentView = 'partners'" class="text-gray-500 hover:text-amber-600 transition flex items-center font-medium">
+                            <i class="fas fa-arrow-left mr-2"></i> Volver a Socios
+                        </button>
+                    </div>
+                    
+                    <div class="glass-card p-8 md:p-10 text-left prose max-w-none text-gray-700">
+                        <h1 class="text-3xl font-bold mb-6 text-gray-900 text-center">Reglas del Partnership Program de Trynder Club</h1>
+                        
+                        <h2 class="text-xl font-bold mt-8 mb-3 text-gray-900">1. �Qu� es el Partnership Program?</h2>
+                        <p class="mb-4">El Partnership Program de Trynder Club es un programa de recompensas mediante el cual los miembros pueden obtener puntos por recomendar la aplicaci�n a otras personas.</p>
+                        <p class="mb-4">Cada participante recibir� un enlace personal de recomendaci�n. Para que una acci�n genere puntos, la persona invitada deber� registrarse o suscribirse utilizando correctamente dicho enlace.</p>
+
+                        <h2 class="text-xl font-bold mt-8 mb-3 text-gray-900">2. Formas de obtener puntos</h2>
+                        <p class="mb-4">Los participantes podr�n obtener puntos de las siguientes maneras:</p>
+                        
+                        <h3 class="text-lg font-bold mt-6 mb-2 text-gray-800">Registro de un nuevo usuario</h3>
+                        <p class="mb-2">El participante recibir� <strong>1 punto</strong> cuando una persona:</p>
+                        <ul class="list-disc pl-6 mb-4 space-y-1">
+                            <li>Acceda a Trynder Club mediante su enlace personal.</li>
+                            <li>Cree una cuenta nueva.</li>
+                            <li>Complete correctamente el proceso de registro.</li>
+                            <li>Verifique su cuenta cuando Trynder Club lo solicite.</li>
+                            <li>Sea identificada como un usuario real y v�lido.</li>
+                        </ul>
+
+                        <h3 class="text-lg font-bold mt-6 mb-2 text-gray-800">Suscripci�n de un nuevo usuario</h3>
+                        <p class="mb-2">El participante recibir� <strong>40 puntos</strong> cuando una persona recomendada:</p>
+                        <ul class="list-disc pl-6 mb-4 space-y-1">
+                            <li>Se registre mediante su enlace personal.</li>
+                            <li>Contrate un plan elegible de Trynder Club.</li>
+                            <li>Complete correctamente el primer pago de su suscripci�n.</li>
+                            <li>Mantenga el pago sin cancelaciones, devoluciones o contracargos durante el periodo de validaci�n.</li>
+                        </ul>
+                        <p class="mb-4">Los puntos por suscripci�n se otorgar�n una sola vez por cada usuario recomendado, aunque posteriormente cambie de plan o renueve su suscripci�n.</p>
+
+                        <h2 class="text-xl font-bold mt-8 mb-3 text-gray-900">3. Validaci�n de las recomendaciones</h2>
+                        <p class="mb-4">Las recomendaciones podr�n aparecer inicialmente como pendientes mientras Trynder Club verifica que se cumplan todos los requisitos.</p>
+                        <p class="mb-2">Trynder Club podr� revisar:</p>
+                        <ul class="list-disc pl-6 mb-4 space-y-1">
+                            <li>Que el usuario recomendado sea una persona real.</li>
+                            <li>Que se trate de una cuenta nueva.</li>
+                            <li>Que el registro provenga del enlace personal del participante.</li>
+                            <li>Que no existan cuentas duplicadas.</li>
+                            <li>Que no se hayan utilizado m�todos automatizados.</li>
+                            <li>Que el pago de la suscripci�n haya sido aprobado.</li>
+                            <li>Que no exista una solicitud de devoluci�n, cancelaci�n o contracargo.</li>
+                            <li>Que la recomendaci�n cumpla con estas reglas.</li>
+                        </ul>
+                        <p class="mb-4">Una vez finalizada la revisi�n, los puntos aparecer�n como disponibles en la cuenta del participante.</p>
+
+                        <h2 class="text-xl font-bold mt-8 mb-3 text-gray-900">4. Periodo de validaci�n</h2>
+                        <p class="mb-4">Los puntos pueden permanecer en estado pendiente durante el tiempo necesario para comprobar la validez del registro o de la suscripci�n.</p>
+                        <p class="mb-4">En el caso de una suscripci�n, los puntos se confirmar�n despu�s de que el primer pago haya sido procesado correctamente y haya concluido el periodo de validaci�n establecido por Trynder Club.</p>
+
+                        <h2 class="text-xl font-bold mt-8 mb-3 text-gray-900">5. Uso del enlace personal</h2>
+                        <p class="mb-4">Cada participante es responsable de utilizar y compartir correctamente su enlace de recomendaci�n.</p>
+                        <p class="mb-4">Si una persona se registra sin utilizar el enlace correspondiente, Trynder Club no garantiza que la recomendaci�n pueda asignarse posteriormente.</p>
+                        <p class="mb-4">Los enlaces pueden compartirse mediante mensajes personales, redes sociales, sitios web y otros medios permitidos, siempre que no se utilicen pr�cticas enga�osas, invasivas o contrarias a la ley.</p>
+
+                        <h2 class="text-xl font-bold mt-8 mb-3 text-gray-900">6. Acciones que no generan puntos</h2>
+                        <p class="mb-2">No se otorgar�n puntos por:</p>
+                        <ul class="list-disc pl-6 mb-4 space-y-1">
+                            <li>Cuentas incompletas, falsas o duplicadas.</li>
+                            <li>Registros realizados por usuarios que ya tengan o hayan tenido una cuenta.</li>
+                            <li>Autorregistros o cuentas creadas por el propio participante.</li>
+                            <li>Registros de familiares, amigos o terceros cuando el participante controle las cuentas.</li>
+                            <li>Cuentas creadas con correos electr�nicos temporales o datos falsos.</li>
+                            <li>Registros realizados mediante bots, scripts o sistemas automatizados.</li>
+                            <li>Suscripciones con pagos rechazados.</li>
+                            <li>Suscripciones canceladas antes de ser validadas.</li>
+                            <li>Pagos devueltos, disputados o sujetos a contracargo.</li>
+                            <li>Actividades que intenten manipular artificialmente el programa.</li>
+                            <li>Recomendaciones que no puedan relacionarse t�cnicamente con el enlace del participante.</li>
+                        </ul>
+
+                        <h2 class="text-xl font-bold mt-8 mb-3 text-gray-900">7. Prohibici�n de pr�cticas indebidas</h2>
+                        <p class="mb-2">No est� permitido:</p>
+                        <ul class="list-disc pl-6 mb-4 space-y-1">
+                            <li>Crear m�ltiples cuentas para acumular puntos.</li>
+                            <li>Comprar registros, usuarios o suscripciones.</li>
+                            <li>Ofrecer informaci�n falsa sobre Trynder Club.</li>
+                            <li>Hacerse pasar por representante oficial de Trynder Club.</li>
+                            <li>Utilizar spam, mensajes masivos no autorizados o publicidad enga�osa.</li>
+                            <li>Prometer beneficios que Trynder Club no haya autorizado.</li>
+                            <li>Modificar, ocultar o manipular el funcionamiento del enlace personal.</li>
+                            <li>Utilizar la marca, identidad o materiales de Trynder Club sin autorizaci�n.</li>
+                            <li>Realizar cualquier actividad fraudulenta o abusiva.</li>
+                        </ul>
+
+                        <h2 class="text-xl font-bold mt-8 mb-3 text-gray-900">8. Cancelaci�n y retiro de puntos</h2>
+                        <p class="mb-2">Trynder Club podr� cancelar puntos pendientes o retirar puntos ya acreditados cuando:</p>
+                        <ul class="list-disc pl-6 mb-4 space-y-1">
+                            <li>Se detecte que una recomendaci�n no cumpl�a los requisitos.</li>
+                            <li>Una suscripci�n sea cancelada, reembolsada o desconocida por el titular del pago.</li>
+                            <li>Exista un error t�cnico o administrativo en la asignaci�n.</li>
+                            <li>Se detecten cuentas falsas, duplicadas o manipuladas.</li>
+                            <li>El participante incumpla las reglas del programa.</li>
+                        </ul>
+                        <p class="mb-4">Si los puntos retirados ya hubieran sido utilizados, Trynder Club podr� descontarlos del saldo futuro del participante, cancelar el canje correspondiente o suspender la cuenta mientras se revisa el caso.</p>
+
+                        <h2 class="text-xl font-bold mt-8 mb-3 text-gray-900">9. Canje de puntos</h2>
+                        <p class="mb-4">Los puntos disponibles podr�n canjearse por los premios publicados en la secci�n <strong>Premios</strong> de Trynder Club.</p>
+                        <p class="mb-2">Cada premio mostrar�:</p>
+                        <ul class="list-disc pl-6 mb-4 space-y-1">
+                            <li>Los puntos necesarios para obtenerlo.</li>
+                            <li>Su disponibilidad.</li>
+                            <li>Las condiciones espec�ficas del canje.</li>
+                            <li>Las restricciones aplicables.</li>
+                            <li>El proceso y tiempo estimado de entrega.</li>
+                        </ul>
+                        <p class="mb-4">Los premios pueden cambiar seg�n disponibilidad. La aparici�n de un premio dentro de la plataforma no garantiza su existencia permanente.</p>
+
+                        <h2 class="text-xl font-bold mt-8 mb-3 text-gray-900">10. Naturaleza de los puntos</h2>
+                        <p class="mb-2">Los puntos del Partnership Program:</p>
+                        <ul class="list-disc pl-6 mb-4 space-y-1">
+                            <li>Son unidades internas de recompensa.</li>
+                            <li>No constituyen dinero, salario, inversi�n ni instrumento financiero.</li>
+                            <li>No generan intereses.</li>
+                            <li>No pueden venderse.</li>
+                            <li>No pueden transferirse entre cuentas.</li>
+                            <li>No pueden intercambiarse directamente por dinero en efectivo.</li>
+                            <li>Solo pueden utilizarse para obtener los premios disponibles dentro del programa.</li>
+                        </ul>
+                        <p class="mb-4">Los puntos no tienen valor fuera de Trynder Club.</p>
+
+                        <h2 class="text-xl font-bold mt-8 mb-3 text-gray-900">11. Disponibilidad de los premios</h2>
+                        <p class="mb-4">Los premios est�n sujetos a disponibilidad y pueden cambiar sin previo aviso. Trynder Club podr� agregar, sustituir, limitar o retirar premios cuando resulte necesario.</p>
+                        <p class="mb-2">Si un premio deja de estar disponible despu�s de solicitarse, Trynder Club podr�:</p>
+                        <ul class="list-disc pl-6 mb-4 space-y-1">
+                            <li>Ofrecer un premio equivalente.</li>
+                            <li>Devolver los puntos utilizados.</li>
+                            <li>Proponer otra alternativa disponible.</li>
+                        </ul>
+
+                        <h2 class="text-xl font-bold mt-8 mb-3 text-gray-900">12. Entrega de premios</h2>
+                        <p class="mb-4">El participante deber� proporcionar informaci�n completa y correcta para recibir su premio.</p>
+                        <p class="mb-2">Trynder Club no ser� responsable por retrasos o entregas fallidas causadas por:</p>
+                        <ul class="list-disc pl-6 mb-4 space-y-1">
+                            <li>Datos incorrectos o incompletos.</li>
+                            <li>Falta de respuesta del participante.</li>
+                            <li>Problemas de terceros encargados de la entrega.</li>
+                            <li>Situaciones fuera del control razonable de Trynder Club.</li>
+                        </ul>
+                        <p class="mb-4">En algunos casos, el participante podr� tener que confirmar su identidad antes de recibir el premio.</p>
+
+                        <h2 class="text-xl font-bold mt-8 mb-3 text-gray-900">13. Vigencia de los puntos</h2>
+                        <p class="mb-4">Trynder Club podr� establecer una fecha de vencimiento para los puntos por inactividad. Cualquier periodo de vencimiento aplicable ser� informado dentro de la plataforma antes de que los puntos sean eliminados.</p>
+                        <p class="mb-4">Cuando una cuenta sea cerrada o eliminada, los puntos pendientes y disponibles podr�n perderse.</p>
+
+                        <h2 class="text-xl font-bold mt-8 mb-3 text-gray-900">14. Suspensi�n o expulsi�n del programa</h2>
+                        <p class="mb-2">Trynder Club podr� suspender temporalmente o expulsar definitivamente a un participante cuando existan indicios razonables de:</p>
+                        <ul class="list-disc pl-6 mb-4 space-y-1">
+                            <li>Fraude.</li>
+                            <li>Abuso del programa.</li>
+                            <li>Manipulaci�n de registros o suscripciones.</li>
+                            <li>Incumplimiento de estas reglas.</li>
+                            <li>Uso indebido de la marca.</li>
+                            <li>Actividades que puedan perjudicar a Trynder Club o a sus usuarios.</li>
+                        </ul>
+                        <p class="mb-4">Durante una revisi�n, los puntos y canjes podr�n permanecer temporalmente bloqueados.</p>
+
+                        <h2 class="text-xl font-bold mt-8 mb-3 text-gray-900">15. Modificaciones al programa</h2>
+                        <p class="mb-2">Trynder Club podr� modificar, pausar o finalizar el Partnership Program, as� como actualizar:</p>
+                        <ul class="list-disc pl-6 mb-4 space-y-1">
+                            <li>Las actividades que generan puntos.</li>
+                            <li>La cantidad de puntos otorgada.</li>
+                            <li>Los requisitos de validaci�n.</li>
+                            <li>Los premios disponibles.</li>
+                            <li>Las condiciones de canje.</li>
+                            <li>La vigencia de los puntos.</li>
+                        </ul>
+                        <p class="mb-4">Cuando un cambio afecte de manera importante el funcionamiento del programa, se procurar� comunicarlo a trav�s de la aplicaci�n o de los medios de contacto disponibles.</p>
+                        <p class="mb-4">Los cambios no afectar�n injustificadamente los canjes que ya hayan sido confirmados.</p>
+
+                        <h2 class="text-xl font-bold mt-8 mb-3 text-gray-900">16. Errores t�cnicos</h2>
+                        <p class="mb-4">La asignaci�n de puntos depende del correcto funcionamiento del enlace de recomendaci�n y de los sistemas de seguimiento de Trynder Club.</p>
+                        <p class="mb-4">En caso de errores t�cnicos, interrupciones o asignaciones incorrectas, Trynder Club podr� revisar y corregir el saldo de puntos. Los registros internos de la plataforma ser�n utilizados para resolver cualquier diferencia.</p>
+
+                        <h2 class="text-xl font-bold mt-8 mb-3 text-gray-900">17. Datos personales</h2>
+                        <p class="mb-4">La participaci�n en el programa est� sujeta al Aviso de Privacidad de Trynder Club.</p>
+                        <p class="mb-4">Los participantes no tendr�n acceso a informaci�n privada de las personas recomendadas. El panel podr� mostrar �nicamente los datos y estados necesarios para administrar las recomendaciones y recompensas.</p>
+
+                        <h2 class="text-xl font-bold mt-8 mb-3 text-gray-900">18. Aceptaci�n de las reglas</h2>
+                        <p class="mb-4">Al participar en el Partnership Program, generar un enlace de recomendaci�n, compartirlo o canjear puntos, el usuario confirma que ha le�do y aceptado estas reglas.</p>
+                        <p class="mb-4">El uso del programa tambi�n est� sujeto a los T�rminos y Condiciones generales y al Aviso de Privacidad de Trynder Club.</p>
+
+                        <h2 class="text-xl font-bold mt-8 mb-3 text-gray-900">19. Contacto</h2>
+                        <p class="mb-4">Para solicitar una revisi�n de puntos, reportar un problema o resolver dudas relacionadas con el Partnership Program, el participante podr� comunicarse mediante los canales de soporte publicados dentro de Trynder Club.</p>
+                    </div>
+                </div>
             </transition>
+
         </main>
 
         <!-- Achievement Modal -->
