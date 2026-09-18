@@ -112,7 +112,7 @@
 <body>
     <div id="app" class="pb-12">
         <!-- Header / Perfil -->
-        <header class="pt-8 pb-6 px-6 max-w-5xl mx-auto flex flex-col items-center justify-center text-center">
+        <header v-if="currentView !== 'login'" class="pt-8 pb-6 px-6 max-w-5xl mx-auto flex flex-col items-center justify-center text-center">
             <div class="relative w-24 h-24 mb-4">
                 <img :src="user.avatar" alt="Profile" class="w-full h-full rounded-full object-cover border-4 border-white shadow-lg">
                 <div class="absolute bottom-0 right-0 bg-amber-500 text-white text-xs font-bold px-2 py-1 rounded-full border-2 border-white shadow-sm">
@@ -127,8 +127,37 @@
         <main class="max-w-5xl mx-auto px-4 sm:px-6">
             <transition name="fade" mode="out-in">
                 
+                
+                <!-- LOGIN -->
+                <div v-if="currentView === 'login'" key="login" class="mt-12 flex justify-center">
+                    <div class="glass-card p-10 text-center max-w-md w-full">
+                        <div class="w-20 h-20 bg-amber-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-user-circle text-4xl text-amber-500"></i>
+                        </div>
+                        <h2 class="text-2xl font-bold mb-2">Iniciar Sesi�n</h2>
+                        <p class="text-gray-600 mb-8">Ingresa tu nombre de usuario para acceder a tu panel de socio.</p>
+                        
+                        <form @submit.prevent="login" class="space-y-4">
+                            <div>
+                                <input type="text" v-model="loginUsername" placeholder="Nombre de usuario" required
+                                    class="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-amber-400 focus:ring focus:ring-amber-200 focus:ring-opacity-50 transition outline-none" />
+                            </div>
+                            
+                            <div v-if="loginError" class="text-red-500 text-sm font-bold">
+                                {{ loginError }}
+                            </div>
+                            
+                            <button type="submit" class="btn-primary px-8 py-3 w-full flex justify-center items-center" :disabled="isLoading">
+                                <span v-if="!isLoading">Entrar al Panel</span>
+                                <i v-else class="fas fa-circle-notch fa-spin"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
                 <!-- DASHBOARD / HOME -->
-                <div v-if="currentView === 'home'" key="home" class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-6">
+
+                <div v-else-if="currentView === 'home'" key="home" class="mt-4 grid grid-cols-1 md:grid-cols-2 gap-6">
                     <!-- Skill Master Button -->
                     <div @click="currentView = 'skills'" class="glass-card cursor-pointer p-8 flex flex-col items-center text-center group">
                         <div class="w-20 h-20 bg-amber-100 rounded-full flex items-center justify-center mb-6 group-hover:bg-amber-200 transition-colors">
@@ -506,9 +535,16 @@
     <script>
         const { createApp, ref, computed } = Vue;
 
+        
+        const API_TOKEN = 'tdx__F8__O...'; // TODO: Reemplaza esto con tu token completo
+
         createApp({
             setup() {
-                const currentView = ref('home');
+                const currentView = ref('login');
+                const loginUsername = ref('');
+                const loginError = ref('');
+                const isLoading = ref(false);
+
                 const linkCopied = ref(false);
                 const selectedAchievement = ref(null);
 
@@ -548,7 +584,55 @@
                 ]);
 
                 // Methods
+                
+                const login = async () => {
+                    if (!loginUsername.value) return;
+                    
+                    isLoading.value = true;
+                    loginError.value = '';
+                    
+                    try {
+                        const response = await fetch(`https://trynderdex.frenfun.xyz/api/referidos?user=${encodeURIComponent(loginUsername.value)}`, {
+                            headers: {
+                                'Authorization': `Bearer ${API_TOKEN}`
+                            }
+                        });
+                        
+                        const data = await response.json();
+                        
+                        if (!response.ok) {
+                            if (response.status === 404) {
+                                loginError.value = 'Usuario no encontrado.';
+                            } else if (response.status === 401) {
+                                loginError.value = 'Error de autorizaci�n. Verifica el token.';
+                            } else {
+                                loginError.value = data.error || 'Error de conexi�n.';
+                            }
+                            return;
+                        }
+                        
+                        if (data.ok && data.usuarios && data.usuarios.length > 0) {
+                            const userData = data.usuarios[0];
+                            user.value.name = userData.username;
+                            user.value.partnerLink = userData.link;
+                            stats.value.registered = userData.registrados || 0;
+                            stats.value.subscribed = userData.pagarian_vip || 0;
+                            stats.value.rewardsEarned = 0; // Se podria calcular en base a los inscritos
+                            
+                            currentView.value = 'home';
+                        } else {
+                            loginError.value = 'Usuario no encontrado.';
+                        }
+                    } catch (e) {
+                        loginError.value = 'Error de red. Intenta nuevamente.';
+                        console.error(e);
+                    } finally {
+                        isLoading.value = false;
+                    }
+                };
+
                 const generateLink = () => {
+
                     user.value.partnerLink = 'app.com/partner/' + user.value.name.toLowerCase().replace(' ', '') + Math.floor(Math.random() * 1000);
                 };
 
@@ -569,7 +653,7 @@
                 };
 
                 return {
-                    currentView,
+                    currentView, loginUsername, loginError, isLoading, login,
                     user,
                     stats,
                     achievements,
