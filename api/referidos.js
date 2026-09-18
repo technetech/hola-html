@@ -2,20 +2,19 @@ export default async function handler(req, res) {
   const { user } = req.query;
 
   if (!user) {
-    return res.status(400).json({ ok: false, error: "Falta el parámetro user" });
+    return res.status(400).json({ ok: false, error: "Falta el parametro user" });
   }
 
   try {
-    // Obtenemos el token desde las variables de entorno seguras de Vercel
     const API_TOKEN = process.env.TRYNDER_API_KEY;
 
     if (!API_TOKEN) {
       return res.status(500).json({ ok: false, error: "API key no configurada en Vercel" });
     }
 
-    const response = await fetch(\https://trynderdex.frenfun.xyz/api/referidos?user=\\, {
+    const response = await fetch(`https://trynderdex.frenfun.xyz/api/referidos?user=${encodeURIComponent(user)}`, {
       headers: {
-        'Authorization': \Bearer \\
+        'Authorization': `Bearer ${API_TOKEN}`
       }
     });
 
