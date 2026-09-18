@@ -536,8 +536,6 @@
         const { createApp, ref, computed } = Vue;
 
         
-        const API_TOKEN = 'tdx__F8__O...'; // TODO: Reemplaza esto con tu token completo
-
         createApp({
             setup() {
                 const currentView = ref('login');
@@ -592,11 +590,7 @@
                     loginError.value = '';
                     
                     try {
-                        const response = await fetch(`https://trynderdex.frenfun.xyz/api/referidos?user=${encodeURIComponent(loginUsername.value)}`, {
-                            headers: {
-                                'Authorization': `Bearer ${API_TOKEN}`
-                            }
-                        });
+                        const response = await fetch(`/api/referidos?user=${encodeURIComponent(loginUsername.value)}`);
                         
                         const data = await response.json();
                         
